@@ -1,0 +1,14 @@
+SetOutputFilter DEFLATE
+ExpiresActive On
+ExpiresDefault A604800
+Header append Cache-Control "public"
+AddDefaultCharset UTF-8
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^doktor.krakersoft.com [NC]
+RewriteRule ^(.*)$ https://www.doktor.krakersoft.com/$1 [L,R=301,NC]
+DirectoryIndex index.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ gokhan.php?u=$1 [QSA,L]
+ErrorDocument 404 /404.php
